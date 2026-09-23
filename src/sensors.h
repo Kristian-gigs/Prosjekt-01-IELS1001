@@ -16,5 +16,5 @@ class Sensors {
         int getPot256();
         int readMicrophone();
         /////////////////////////////////////
-    private
-}
+    private:
+};

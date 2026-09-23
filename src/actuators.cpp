@@ -1,6 +1,6 @@
 #include "actuators.h"
 
-Actuators::Actuators(CRGB leds, Adafruit_SSD1306 display)
+Actuators::Actuators(CRGB *leds[], Adafruit_SSD1306 *display)
 {
 
 }

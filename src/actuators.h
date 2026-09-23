@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "Wire.h"
 #include "string.h"
+#define NO_ADAFRUIT_SSD1306_COLOR_COMPATIBILITY
 #include "Adafruit_GFX.h"
 #include "Adafruit_SSD1306.h"
 #include "FastLED.h"
@@ -16,7 +17,7 @@ class Actuators {
         Adafruit_SSD1306 display;
 
     public:
-        Actuators(CRGB leds, Adafruit_SSD1306 display);
+        Actuators(CRGB *leds[], Adafruit_SSD1306 *display);
         void setLED(bool On);
         void setLEDColor(int r, int g, int b);
         void setLEDBrightness(int bright);
