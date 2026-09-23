@@ -5,7 +5,8 @@ This product competes with the Clas Ohlson ledstripe. This is because this produ
 
 The led strip can change brightness and light color. The settings for this will be selectable through an lcd screen. To go through menus, a potentiometer will be used to scroll the menu, and a button to select, and one button to go back. When a user has reached a setting like brightness, the pot is then used to adjust the strength of light. The menu will have 3 objects: Light brightness, light color and sound threshold.
 
-The sound threshold is to notify people in the room if the sound is at a dangerous level for their hearing. The light will blink at a color and speed defined in the settings menu on the oled screen.
+The sound threshold is to notify people in the room if the sound is at a dangerous level for their hearing. The light will blink at a color and speed defined in the settings menu on the oled screen. Underneath one can see the menu layout for the display.
+
 
 Light brightness:
 -Brightness
