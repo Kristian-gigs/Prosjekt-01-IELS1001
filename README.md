@@ -21,3 +21,5 @@ Sound threshold:
 ----Threshold
 ----Color
 ----Blink speed
+
+The code is based around an actuator module, a sensor module, and finally the main file. This has been done to make the code as structured as possible, and to make the code easy to adapt to new variables or desires from users, meaning the functionality of the project can also be greatly extended without having to change or restructure the code. It also makes the code a lot more readable for other persons, which means it would be easier to hand the project on to a long-time maintenance team after development.
