@@ -10,7 +10,7 @@ class Actuators {
     private:
         const int _screenWidth = 128;
         const int _screenHeight = 64;
-        Adafruit_SSD1306 display(_screenWidth, _screenHeight, &Wire, -1);
+        Adafruit_SSD1306 display;
 
 
     public:
