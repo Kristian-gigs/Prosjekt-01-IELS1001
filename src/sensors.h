@@ -12,8 +12,9 @@ class Sensors {
         // Member funcs //////////////////////
         Sensors(int potPin, int micPin);
         int getPot(int states);
-        int getPot4();
-        int getPot256();
+        int getMainMenuState();
+        int getSubMenuState();
+        int getValueInput();
         int readMicrophone();
         /////////////////////////////////////
     private:
