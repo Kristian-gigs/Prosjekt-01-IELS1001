@@ -11,8 +11,15 @@ void loop() {
   
   // Maps values for the menu states. The current menu is for selecting whether one is inside the mainmenu, or inside the other menus.
   // The menu_select_state is for choosing which menu is visible, though it is not selected yet.
-  current_menu_state = map(sensors.getPot(), 0, 1023, 0, 3);
-  menu_select_state = map(sensors.getPot(), 0, 1023, 0, 2);
+  if (sensors.getSelectButtonState() && current_menu_state)
+  {
+    current_menu_state = map(sensors.getPot(), 0, 1023, 0, 3);
+  }
+  else if (sensors.getSelectButtonState())
+  {
+    menu_select_state = map(sensors.getPot(), 0, 1023, 0, 2);
+  }
+  
   switch (current_menu_state)
   {
     case 0:
