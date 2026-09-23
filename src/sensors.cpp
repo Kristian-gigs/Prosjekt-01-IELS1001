@@ -5,18 +5,18 @@ Sensors::Sensors()
 
 }
 
-void Sensors::initSensors()
+void Sensors::initSensors() // Put in setup for init of required pins
 {
     pinMode(SELECT_BUTTON, INPUT_PULLUP);
     pinMode(BACK_BUTTON, INPUT_PULLUP);
 }
 
-int Sensors::getPot()
+int Sensors::getPot() 
 {
     return analogRead(POT_PIN);
 }
 
-bool Sensors::getSelectButtonState()
+bool Sensors::getSelectButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
 {
     bool btnState = digitalRead(BACK_BUTTON);
 
@@ -31,7 +31,7 @@ bool Sensors::getSelectButtonState()
     }
     
 }  
-bool Sensors::getBackButtonState() // Checks if button is last pressed. The button will be registered pressed once when
+bool Sensors::getBackButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
 {
     bool btnState = digitalRead(BACK_BUTTON);
 

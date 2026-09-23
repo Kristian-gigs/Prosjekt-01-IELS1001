@@ -10,17 +10,17 @@
 class Sensors {
     private:
         // Member vars ////////////////////////
-        int volumeThreshold = 200;
-        int backBtnLastPrsd = millis();
-        int selectBtnLastPrsd = millis();
+        int volumeThreshold = 200; // Default threshold for safe volume at the working place
+        int backBtnLastPrsd = millis(); // For software debouncing of btn
+        int selectBtnLastPrsd = millis(); // same as above
         ///////////////////////////////////////
     public:
 
         // Member funcs //////////////////////
-        Sensors();
-        void initSensors();
-        int getPot();
-        bool getSelectButtonState();
+        Sensors(); // constructor
+        void initSensors(); // Set pinModes for input pins
+        int getPot(); // Get value from pot
+        bool getSelectButtonState(); // Get state of select btn. Includes
         bool getBackButtonState();
         int readMicrophone();
         /////////////////////////////////////
