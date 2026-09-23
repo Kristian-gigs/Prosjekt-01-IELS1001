@@ -110,18 +110,31 @@ void ledColorMenu()
     switch (menu_select_state)
     {
       case 0:
-        actuators.setLedColor(sensors.getPot(), actuators.getLedColor().g, actuators.getLedColor().b); 
-        actuators.showInfo("Red: \n" + String(actuators.getLedColor().r));
+        actuators.showInfo("Red: \n");
         break;
       case 1:
-        actuators.setLedColor(actuators.getLedColor().r, sensors.getPot(), actuators.getLedColor().b);
-        actuators.showInfo("Green: \n" + String(actuators.getLedColor().g));
+        actuators.showInfo("Green: \n");
         break;
       case 2:
-        actuators.setLedColor(actuators.getLedColor().r, actuators.getLedColor().g, sensors.getPot());
-        actuators.showInfo("Blue: \n" + String(actuators.getLedColor().b));
+        actuators.showInfo("Blue: \n");
         break;
     }
+
+    // switch (menu_select_state)
+    // {
+    //   case 0:
+    //     actuators.setLedColor(sensors.getPot(), actuators.getLedColor().g, actuators.getLedColor().b); 
+    //     actuators.showInfo("Red: \n" + String(actuators.getLedColor().r));
+    //     break;
+    //   case 1:
+    //     actuators.setLedColor(actuators.getLedColor().r, sensors.getPot(), actuators.getLedColor().b);
+    //     actuators.showInfo("Green: \n" + String(actuators.getLedColor().g));
+    //     break;
+    //   case 2:
+    //     actuators.setLedColor(actuators.getLedColor().r, actuators.getLedColor().g, sensors.getPot());
+    //     actuators.showInfo("Blue: \n" + String(actuators.getLedColor().b));
+    //     break;
+    // }
   
 
 }

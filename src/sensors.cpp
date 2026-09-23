@@ -18,11 +18,11 @@ int Sensors::getPot()
 
 bool Sensors::getSelectButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
 {
-    bool btnState = digitalRead(BACK_BUTTON);
+    bool btnState = !digitalRead(SELECT_BUTTON);
 
-    if (btnState && millis() - backBtnLastPrsd > 200)
+    if (btnState && (millis() - selectBtnLastPrsd> 200))
     {
-        return !digitalRead(BACK_BUTTON);
+        return btnState;
         backBtnLastPrsd = millis();
     }
     else
@@ -33,11 +33,11 @@ bool Sensors::getSelectButtonState() // Checks if button is pressed. The button 
 }  
 bool Sensors::getBackButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
 {
-    bool btnState = digitalRead(BACK_BUTTON);
+    bool btnState = !digitalRead(BACK_BUTTON);
 
-    if (btnState && millis() - backBtnLastPrsd > 200)
+    if (btnState && (millis() - backBtnLastPrsd > 200))
     {
-        return !digitalRead(BACK_BUTTON);
+        return btnState;
         backBtnLastPrsd = millis();
     }
     else
