@@ -22,7 +22,7 @@ class Actuators {
         bool ledstate = 0;
         Adafruit_SSD1306 display;
         CRGB leds[NUM_LEDS];
-        CRGB ledColor;
+        CRGB ledColor = CRGB::White;
         
     public:
         Actuators();

@@ -15,3 +15,13 @@ int Sensors::getPot()
 {
     return analogRead(POT_PIN);
 }
+
+bool Sensors::getSelectButtonState()
+{
+    return !digitalRead(SELECT_BUTTON);
+}
+
+bool Sensors::getBackButtonState()
+{
+    return !digitalRead(BACK_BUTTON);
+}
