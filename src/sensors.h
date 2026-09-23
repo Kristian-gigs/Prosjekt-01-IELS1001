@@ -11,6 +11,8 @@ class Sensors {
     private:
         // Member vars ////////////////////////
         int volumeThreshold = 200;
+        int backBtnLastPrsd = millis();
+        int selectBtnLastPrsd = millis();
         ///////////////////////////////////////
     public:
 

@@ -18,10 +18,30 @@ int Sensors::getPot()
 
 bool Sensors::getSelectButtonState()
 {
-    return !digitalRead(SELECT_BUTTON);
-}
+    bool btnState = digitalRead(BACK_BUTTON);
 
-bool Sensors::getBackButtonState()
+    if (btnState && millis() - backBtnLastPrsd > 200)
+    {
+        return !digitalRead(BACK_BUTTON);
+        backBtnLastPrsd = millis();
+    }
+    else
+    {
+        return false;
+    }
+    
+}  
+bool Sensors::getBackButtonState() // Checks if button is last pressed. The button will be registered pressed once when
 {
-    return !digitalRead(BACK_BUTTON);
+    bool btnState = digitalRead(BACK_BUTTON);
+
+    if (btnState && millis() - backBtnLastPrsd > 200)
+    {
+        return !digitalRead(BACK_BUTTON);
+        backBtnLastPrsd = millis();
+    }
+    else
+    {
+        return false;
+    }
 }
