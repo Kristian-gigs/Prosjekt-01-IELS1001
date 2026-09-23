@@ -2,28 +2,29 @@
 
 void setup() {
   // put your setup code here, to run once:
-  
 }
 
 void loop() {
   unsigned long current_time = millis();
 
   time_interval = analogRead(POT_PIN)/2 + 50;
-  switch (menu_state)
+
+  switch (actuators.current_menu_state)
   {
-    case 0:
+    case Actuators::MenuState::MAIN_MENU:
       mainMenu();
+
       break;
     
-    case 1:
+    case Actuators::MenuState::BRIGHTNESS_MENU:
       brightnessMenu();
       break;
 
-    case 2:
+    case Actuators::MenuState::LED_COLOR_MENU:
       ledColorMenu();
       break;
     
-    case 3:
+    case Actuators::MenuState::THRESHOLD_MENU:
       thresholdMenu();
       break;
     
@@ -38,23 +39,70 @@ void loop() {
   
 }
 
+
+
 // put function definitions here:
 void mainMenu()
 {
-
+  switch (menu_select_state)
+  {
+    case 0:
+      actuators.showInfo("Brightness Menu");
+      if (sensors.getSelectButtonState())
+      {
+        actuators.current_menu_state = Actuators::MenuState::BRIGHTNESS_MENU;
+      }
+      break;
+    case 1:
+      actuators.showInfo("LED Color Menu");
+      if (sensors.getSelectButtonState())
+      {
+        actuators.current_menu_state = Actuators::MenuState::LED_COLOR_MENU;
+      }
+      break;
+    case 2:
+      actuators.showInfo("Threshold Menu");
+      if (sensors.getSelectButtonState())
+      {
+        actuators.current_menu_state = Actuators::MenuState::THRESHOLD_MENU;
+      }
+      break;
+    
+  }
 }
 
 void brightnessMenu()
 {
-
+  actuators.showInfo("Light brightness:\n" + String(actuators.getLedBrightness()));
 }
+
+
 
 void ledColorMenu()
 {
-
+  switch (menu_select_state)
+  {
+    case 0:
+      actuators.showInfo("Red: \n" + String(actuators.getLedColor().r));
+      break;
+    case 1:
+      actuators.showInfo("Green: \n" + String(actuators.getLedColor().g));
+      break;
+    case 2:
+      actuators.showInfo("Blue: \n" + String(actuators.getLedColor().b));
+      break;
+  }
 }
 
 void thresholdMenu()
 {
-
+  switch (menu_select_state)
+  {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+  }
 }

@@ -31,7 +31,12 @@ void Actuators::writeLED(bool On)
 // Funksjon for å sette lysstyrke på ledstripe
 void Actuators::setLEDBrightness(int bright)
 {
+    FastLED.setBrightness(bright);
+}
 
+int Actuators::getLedBrightness()
+{
+    return FastLED.getBrightness();
 }
 
 // Funksjon for å sette variabelen ledState
@@ -45,8 +50,13 @@ void Actuators::setLedColor(int r, int g, int b)
     ledColor.setRGB(r, g, b);
 }
 
+CRGB Actuators::getLedColor()
+{
+    return ledColor;
+}
+
 // Funksjon for å skrive ting på displayet
 void Actuators::showInfo(String info)
 {
-    
+
 }
