@@ -14,7 +14,8 @@ class Sensors {
         int getPot(int states);
         int getMainMenuState();
         int getSubMenuState();
-        int getValueInput();
+        bool getSelectButtonState();
+        bool getBackButtonState();
         int readMicrophone();
         /////////////////////////////////////
     private:
