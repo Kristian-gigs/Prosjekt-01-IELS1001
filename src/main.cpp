@@ -5,13 +5,13 @@ void setup() {
   Serial.begin(9600); // Debug
   Serial.println("Hello=)"); // Debug
   sensors.initSensors(); // Runs pinMode on required sensor pins
+  actuators.setLEDBrightness(50);
 }
 void loop() {
   unsigned long current_time = millis(); // checks time at beginning of loop for delta time for non-blocking code.
 
   actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
-  actuators.setLEDBrightness(50);
-
+  FastLED.setBrightness(actuators.getLedBrightness()); // Sets the brightness of the led at the beginning of each iteration of loop, based on the value set in the brightness menu.
 
   // Maps values for the menu states. The current menu is for selecting whether one is inside the mainmenu, or inside the other menus.
   // The menu_select_state is for choosing which menu is visible, though it is not selected yet. So it scrolls across menus, letting you choose which one with the select button.
@@ -95,6 +95,7 @@ void brightnessMenu()
     current_menu_state = 0;
   }
   actuators.showInfo("Light brightness:\n" + String(actuators.getLedBrightness()));
+  actuators.setLEDBrightness(sensors.getPot());
 
 }
 
@@ -102,7 +103,7 @@ void brightnessMenu()
 
 void ledColorMenu()
 {
-  
+  menu_select_state = sensors.potMap(0, 1023, 0, 2);
   if (sensors.getBackButtonState())
   {
     current_menu_state = 0;

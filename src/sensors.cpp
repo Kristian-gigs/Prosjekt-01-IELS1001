@@ -16,6 +16,11 @@ int Sensors::getPot()
     return analogRead(POT_PIN);
 }
 
+int Sensors::potMap(int lowestIn, int highestIn, int lowestOut, int highestOut) 
+{
+    return map(analogRead(POT_PIN), lowestIn, highestIn, lowestOut, highestOut);
+}
+
 bool Sensors::getSelectButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
 {
     bool btnState = !digitalRead(SELECT_BUTTON);

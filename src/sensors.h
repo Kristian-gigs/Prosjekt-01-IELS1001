@@ -20,6 +20,7 @@ class Sensors {
         Sensors(); // constructor
         void initSensors(); // Set pinModes for input pins
         int getPot(); // Get value from pot
+        int potMap(int lowestIn, int highestIn, int lowestOut, int highestOut);
         bool getSelectButtonState(); // Get state of select btn. Includes
         bool getBackButtonState();
         int readMicrophone();
