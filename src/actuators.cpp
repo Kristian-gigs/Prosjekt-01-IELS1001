@@ -1,9 +1,11 @@
 #include "actuators.h"
+#include "HardwareSerial.h" // Debug
 
 Actuators::Actuators()
 {
     FastLED.addLeds<WS2812, DATA_PIN, GRB>(leds, NUM_LEDS);
     Adafruit_SSD1306 display(_screenWidth, _screenHeight, &Wire, -1);
+    Serial.begin(9600); // Debug
 }
 
 //Funksjon for å skrive til ledstripe
@@ -58,5 +60,5 @@ CRGB Actuators::getLedColor()
 // Funksjon for å skrive ting på displayet
 void Actuators::showInfo(String info)
 {
-
+    Serial.println(info); // Debug
 }
