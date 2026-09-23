@@ -1,9 +1,15 @@
+#include "main.h"
 #include <Arduino.h>
 #include "FastLED.h"
 
 #if defined(ARDUINO_ARCH_AVR)
-  #define DATA_PIN 2
+  #define DATA_PIN 3
   #define POT_PIN A0
+  #define MIC_PIN A1
+  #define OLED_SDA 4
+  #define OLED_SCL 5
+  #define SELECT_BUTTON 6
+  #define BACK_BUTTON 7
 #elif defined(ARDUINO_ARCH_ESP32)
   #define DATA_PIN 13 // Labeled D13
   #define POT_PIN 36 // Labeled as VP on the ESP-WROOM-32
