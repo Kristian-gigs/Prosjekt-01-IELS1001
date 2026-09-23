@@ -17,3 +17,8 @@ unsigned long previous_time = 0;
 unsigned long time_interval = 500;
 bool led_on = false;
 int menu_state = 0;
+
+void mainMenu();
+void brightnessMenu();
+void ledColorMenu();
+void thresholdMenu();

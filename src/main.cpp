@@ -1,9 +1,4 @@
 #include "main.h"
-void mainMenu();
-void brightnessMenu();
-void thresholdMenu();
-void ledColorMenu();
-
 
 void setup() {
   // put your setup code here, to run once:
@@ -17,15 +12,19 @@ void loop() {
   switch (menu_state)
   {
     case 0:
+      mainMenu();
       break;
     
     case 1:
+      brightnessMenu();
       break;
 
     case 2:
+      ledColorMenu();
       break;
     
     case 3:
+      thresholdMenu();
       break;
     
   }
@@ -40,3 +39,22 @@ void loop() {
 }
 
 // put function definitions here:
+void mainMenu()
+{
+
+}
+
+void brightnessMenu()
+{
+
+}
+
+void ledColorMenu()
+{
+
+}
+
+void thresholdMenu()
+{
+
+}
