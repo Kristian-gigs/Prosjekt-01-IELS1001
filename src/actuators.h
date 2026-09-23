@@ -5,16 +5,18 @@
 #include "string.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_SSD1306.h"
+#include "FastLED.h"
 
 class Actuators {
     private:
         const int _screenWidth = 128;
         const int _screenHeight = 64;
+        int _NUM_LEDS;
+        int _DATA_PIN;
         Adafruit_SSD1306 display;
 
-
     public:
-        Actuators(int ledPin, int SDA, int SCL, int pot, int selecBtn, int backBtn);
+        Actuators(CRGB leds, Adafruit_SSD1306 display);
         void setLED(bool On);
         void setLEDColor(int r, int g, int b);
         void setLEDBrightness(int bright);

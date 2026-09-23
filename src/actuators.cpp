@@ -1,13 +1,12 @@
 #include "actuators.h"
 
-Actuators::Actuators(int ledPin, int SDA, int SCL, int pot, int selecBtn, int backBtn)
-    : display(_screenWidth, _screenHeight, &Wire, -1)
+Actuators::Actuators(CRGB leds, Adafruit_SSD1306 display)
 {
-    
+
 }
 void Actuators::setLED(bool On)
 {
-
+    
 }
 
 void Actuators::setLEDBrightness(int bright)
