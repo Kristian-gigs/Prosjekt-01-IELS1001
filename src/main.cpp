@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "FastLED.h"
 
-#if defined(ARDUINO_ARCH_AVR)
+#if defined(ARDUINO_ARCH_AVR) //Pin definitions for Arduino Uno
   #define DATA_PIN 3
   #define POT_PIN A0
   #define MIC_PIN A1
