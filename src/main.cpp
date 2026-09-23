@@ -8,23 +8,27 @@ void loop() {
   unsigned long current_time = millis();
 
   time_interval = analogRead(POT_PIN)/2 + 50;
-
-  switch (actuators.current_menu_state)
+  
+  // Maps values for the menu states. The current menu is for selecting whether one is inside the mainmenu, or inside the other menus.
+  // The menu_select_state is for choosing which menu is visible, though it is not selected yet.
+  current_menu_state = map(sensors.getPot(), 0, 1023, 0, 3);
+  menu_select_state = map(sensors.getPot(), 0, 1023, 0, 2);
+  switch (current_menu_state)
   {
-    case Actuators::MenuState::MAIN_MENU:
+    case 0:
       mainMenu();
 
       break;
     
-    case Actuators::MenuState::BRIGHTNESS_MENU:
+    case 1:
       brightnessMenu();
       break;
 
-    case Actuators::MenuState::LED_COLOR_MENU:
+    case 2:
       ledColorMenu();
       break;
     
-    case Actuators::MenuState::THRESHOLD_MENU:
+    case 3:
       thresholdMenu();
       break;
     
@@ -50,21 +54,21 @@ void mainMenu()
       actuators.showInfo("Brightness Menu");
       if (sensors.getSelectButtonState())
       {
-        actuators.current_menu_state = Actuators::MenuState::BRIGHTNESS_MENU;
+        current_menu_state = 1;
       }
       break;
     case 1:
       actuators.showInfo("LED Color Menu");
       if (sensors.getSelectButtonState())
       {
-        actuators.current_menu_state = Actuators::MenuState::LED_COLOR_MENU;
+        current_menu_state = 2;
       }
       break;
     case 2:
       actuators.showInfo("Threshold Menu");
       if (sensors.getSelectButtonState())
       {
-        actuators.current_menu_state = Actuators::MenuState::THRESHOLD_MENU;
+        current_menu_state = 3;
       }
       break;
     

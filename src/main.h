@@ -10,6 +10,7 @@
 unsigned long previous_time = 0;
 unsigned long time_interval = 500;
 bool led_on = false;
+int current_menu_state = 0;
 int menu_select_state = 0;
 
 Actuators actuators;

@@ -17,9 +17,7 @@ class Sensors {
         // Member funcs //////////////////////
         Sensors();
         void initSensors();
-        int getPot(int states);
-        int getMainMenuState();
-        int getSubMenuState();
+        int getPot();
         bool getSelectButtonState();
         bool getBackButtonState();
         int readMicrophone();

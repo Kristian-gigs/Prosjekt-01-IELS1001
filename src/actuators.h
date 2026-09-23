@@ -35,12 +35,4 @@ class Actuators {
         void setLedColor(int r, int g, int b);
         CRGB getLedColor();
         void showInfo(String info);
-        enum MenuState
-        {
-          MAIN_MENU,
-          BRIGHTNESS_MENU,
-          LED_COLOR_MENU,
-          THRESHOLD_MENU
-        };
-        MenuState current_menu_state = MAIN_MENU;
 };
