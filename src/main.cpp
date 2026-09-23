@@ -44,6 +44,8 @@ void loop() {
       break;
     
   }
+
+  // runs code at the interval time. This part is used to turn the light on and off with intervals when we want to blink the LED. Runs when the volume is over the threshold level.
   if (current_time - previous_time > time_interval)
   {
     previous_time = current_time;
@@ -108,7 +110,7 @@ void ledColorMenu()
     switch (menu_select_state)
     {
       case 0:
-        actuators.setLedColor(sensors.getPot(), actuators.getLedColor().g, actuators.getLedColor().b);
+        actuators.setLedColor(sensors.getPot(), actuators.getLedColor().g, actuators.getLedColor().b); 
         actuators.showInfo("Red: \n" + String(actuators.getLedColor().r));
         break;
       case 1:
