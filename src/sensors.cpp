@@ -11,14 +11,14 @@ void Sensors::initSensors() // Put in setup for init of required pins
     pinMode(BACK_BUTTON, INPUT_PULLUP);
 }
 
-int Sensors::getPot() 
+int Sensors::getPot() // Gets analog value from potentiometer
 {
     return analogRead(POT_PIN);
 }
 
-int Sensors::potMap(int lowestIn, int highestIn, int lowestOut, int highestOut) 
+int Sensors::potMap(int lowestOut, int highestOut) // Gets desired map of analog value from pot.
 {
-    return map(analogRead(POT_PIN), lowestIn, highestIn, lowestOut, highestOut);
+    return map(analogRead(POT_PIN), 0, 1023, lowestOut, highestOut);
 }
 
 bool Sensors::getSelectButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.

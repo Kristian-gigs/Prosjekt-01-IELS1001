@@ -41,11 +41,6 @@ int Actuators::getLedBrightness()
     return FastLED.getBrightness();
 }
 
-// Funksjon for å sette variabelen ledState
-void Actuators::setLedState()
-{
-
-}
 
 void Actuators::setLedColor(int r, int g, int b)
 {
