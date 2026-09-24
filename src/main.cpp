@@ -13,17 +13,6 @@ void loop() {
   FastLED.setBrightness(actuators.getLedBrightness()); // Sets the brightness of the led at the beginning of each iteration of loop, based on the value set in the brightness menu.
   actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
   
-
-  // Maps values for the menu states. The current menu is for selecting whether one is inside the mainmenu, or inside the other menus.
-  // The menu_show_state is for choosing which menu is visible, though it is not selected yet. So it scrolls across menus, letting you choose which one with the select button.
-  if ((sensors.getSelectButtonState() && current_menu_state == 0) || current_menu_state == 1)
-  {
-    menu_show_state = map(sensors.getPot(), 0, 1023, 0, 2);
-  }
-  else if (sensors.getSelectButtonState())
-  {
-    current_menu_state = map(sensors.getPot(), 0, 1023, 0, 3);
-  }
   
   // Checks which menu we are currently in, and then runs the command to show said screen. Checks current menu state every iteration.
   switch (current_menu_state) 
@@ -72,27 +61,27 @@ void loop() {
   }
   switch (menu_show_state)
   {
-    case 0:
+    case 1:
       actuators.showInfo("Brightness Menu");
       if (sensors.getSelectButtonState())
       {
-        current_menu_state = 1;
-      }
-      break;
-
-    case 1:
-      actuators.showInfo("LED Color Menu");
-      if (sensors.getSelectButtonState())
-      {
-        current_menu_state = 2;
+        current_menu_state = menu_show_state;
       }
       break;
 
     case 2:
+      actuators.showInfo("LED Color Menu");
+      if (sensors.getSelectButtonState())
+      {
+        current_menu_state = menu_show_state;
+      }
+      break;
+
+    case 3:
       actuators.showInfo("Threshold Menu");
       if (sensors.getSelectButtonState())
       {
-        current_menu_state = 3;
+        current_menu_state = menu_show_state;
       }
       break;
     
@@ -100,7 +89,7 @@ void loop() {
         actuators.showInfo("Red: \n");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = 4;
+        current_menu_state = menu_show_state;
       }
         break;
 
@@ -108,7 +97,7 @@ void loop() {
         actuators.showInfo("Green: \n");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = 5;
+        current_menu_state = menu_show_state;
       }
         break;
 
@@ -116,7 +105,7 @@ void loop() {
         actuators.showInfo("Blue: \n");
         if (sensors.getSelectButtonState())
         {
-          current_menu_state = 6;
+          current_menu_state = menu_show_state;
         }
         break;
       
@@ -124,7 +113,7 @@ void loop() {
         actuators.showInfo("Blink speed");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = 4;
+        current_menu_state = menu_show_state;
       }
         break;
 
@@ -132,7 +121,7 @@ void loop() {
         actuators.showInfo("Blink color");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = 5;
+        current_menu_state = 8;
       }
         break;
 
@@ -140,9 +129,11 @@ void loop() {
         actuators.showInfo("Sound max threshold");
         if (sensors.getSelectButtonState())
         {
-          current_menu_state = 6;
+          current_menu_state = 9;
         }
         break;
+    case 10:
+        break; // When you are inside a menu with no submenus, this case will be used to make sure the menu_show_state does not change when you turn the pot, otherwise it will show 2 menus at once.
   }
 
   // runs code at the interval time. This part is used to turn the light on and off with intervals when we want to blink the LED. Runs when the volume is over the threshold level.
@@ -161,18 +152,19 @@ void loop() {
 // put function definitions here:
 void mainMenu()
 {
-  menu_show_state = sensors.potMap(0,2);
+  menu_show_state = sensors.potMap(1,3); // Shows brightness, LED color, and threshold menus.
  
 }
 
 void brightnessMenu()
 {
+  menu_show_state = 10;
   if (sensors.getBackButtonState())
   {
     current_menu_state = 0;
   }
   actuators.showInfo("Light brightness:\n" + String(actuators.getLedBrightness()));
-  actuators.setLEDBrightness(sensors.potMap(0, 256));
+  actuators.setLEDBrightness(sensors.potMap(0, 255));
 
 }
 
@@ -180,7 +172,7 @@ void brightnessMenu()
 
 void ledColorMenu()
 {
-  menu_show_state = sensors.potMap(4,6);
+  menu_show_state = sensors.potMap(4,6); // Shows the red, green, and blue options.
   if (sensors.getBackButtonState())
   {
     current_menu_state = 0;
@@ -189,8 +181,9 @@ void ledColorMenu()
 }
 void redMenu()
 {
-  actuators.setLedColor(sensors.potMap(0, 255), actuators.getLedColor().b, actuators.getLedColor().b);
-  actuators.showInfo("Red: \n" + String(actuators.getLedColor().g));
+  menu_show_state = 10;
+  actuators.setLedColor(sensors.potMap(0, 255), actuators.getLedColor().g, actuators.getLedColor().b);
+  actuators.showInfo("Red: \n" + String(actuators.getLedColor().r));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 2;
@@ -199,8 +192,9 @@ void redMenu()
 
 void greenMenu()
 {
+  menu_show_state = 10;
   actuators.setLedColor(actuators.getLedColor().r, sensors.potMap(0, 255), actuators.getLedColor().b);
-  actuators.showInfo("Blue: \n" + String(actuators.getLedColor().g));
+  actuators.showInfo("Green: \n" + String(actuators.getLedColor().g));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 2;
@@ -209,6 +203,7 @@ void greenMenu()
 
 void blueMenu()
 {
+  menu_show_state = 10;
   actuators.setLedColor(actuators.getLedColor().r, actuators.getLedColor().g, sensors.potMap(0, 255));
   actuators.showInfo("Blue: \n" + String(actuators.getLedColor().b));
   if (sensors.getBackButtonState())
@@ -217,8 +212,22 @@ void blueMenu()
   }
 }
 
+void thresholdMenu()
+{
+  menu_show_state = sensors.potMap(7,9); // Shows the blink speed, blink color, and sound threshold options.
+  if (sensors.getBackButtonState())
+  {
+    current_menu_state = 0;
+  }
+  if (sensors.getSelectButtonState())
+  {
+    current_menu_state = menu_show_state;
+  }
+}
+
 void blinkSpeed()
 {
+  menu_show_state = 10;
   actuators.showInfo("Interval time: \n" + String(sensors.potMap(100, 1000)));
   time_interval = sensors.potMap(100, 1000);
   if (sensors.getBackButtonState())
@@ -229,8 +238,9 @@ void blinkSpeed()
 
 void blinkColor()
 {
+  menu_show_state = 10;
   actuators.showInfo("Blink color: \nRed(0), Green(1), Blue(2)\n" + String(sensors.potMap(0, 2)));
-  actuators.setLedColor(255*(sensors.potMap(0,2) == 0), 255*(sensors.potMap(0,2) == 0), 255*(sensors.potMap(0,2) == 0)); // If ex. potMap == 2, then it becomes 255*1, 255*0 and 255*0. Thus the color will be decided by the potMap value
+  actuators.setLedColor(255*(sensors.potMap(0,3) == 0), 255*(sensors.potMap(0,3) == 0), 255*(sensors.potMap(0,3) == 0)); // If ex. potMap == 2, then it becomes 255*1, 255*0 and 255*0. Thus the color will be decided by the potMap value
 
   if (sensors.getBackButtonState())
   {
@@ -240,14 +250,10 @@ void blinkColor()
 
 void soundMaxThreshold()
 {
-  
-}
-
-void thresholdMenu()
-{
-  menu_show_state = sensors.potMap(7,9);
+  menu_show_state = 10;
   if (sensors.getBackButtonState())
   {
-    current_menu_state = 0;
+    current_menu_state = 3;
   }
 }
+
