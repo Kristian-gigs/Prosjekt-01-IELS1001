@@ -28,7 +28,10 @@ bool Sensors::getSelectButtonState() // Checks if button is pressed. The button 
     if (btnState && (millis() - selectBtnLastPrsd> 200))
     {
         return btnState;
-        backBtnLastPrsd = millis();
+        selectBtnLastPrsd = millis();
+    }
+    else if (btnState && !(millis() - selectBtnLastPrsd > 200)){
+        selectBtnLastPrsd = millis();
     }
     else
     {
@@ -43,6 +46,9 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
     if (btnState && (millis() - backBtnLastPrsd > 200))
     {
         return btnState;
+        backBtnLastPrsd = millis();
+    }
+    else if (btnState && !(millis() - backBtnLastPrsd > 200)){
         backBtnLastPrsd = millis();
     }
     else
