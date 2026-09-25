@@ -15,7 +15,7 @@ void loop() {
   actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
   
   
-  // Checks which menu we are currently in, and then runs the command to show said screen. Checks current menu state every iteration.
+  // Checks which menu we are currently in, and then runs the command to show said menuscreen. Checks current menu state every iteration.
   switch (current_menu_state) 
   {
     case 0:
@@ -60,6 +60,8 @@ void loop() {
     
   
   }
+  // Checks which menu option to show based on which menu/submenu we are in. The higher menus define where the pot value is mapped to,
+  // and thus which options you can choose from.
   switch (menu_show_state)
   {
     case 1:
@@ -159,7 +161,7 @@ void loop() {
 
 
 
-// put function definitions here:
+// Auxiliary functions mainly for the menu system. ///////////////////////////////////////////////////////
 void mainMenu()
 {
   menu_show_state = sensors.potMap(1,3); // Shows brightness, LED color, and threshold menus.
@@ -266,4 +268,4 @@ void soundMaxThreshold()
     current_menu_state = 3;
   }
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
