@@ -68,3 +68,8 @@ void Sensors::setVolumeMaxThreshold(int newThreshold)
 {
     volumeMaxThreshold = newThreshold;
 }
+
+int Sensors::readMicrophone()
+{
+    return analogRead(MIC_PIN);
+}
