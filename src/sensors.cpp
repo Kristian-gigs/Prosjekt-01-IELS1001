@@ -64,7 +64,7 @@ int Sensors::getVolumeMaxThreshold()
     return volumeMaxThreshold;
 }
 
-void Sensors::setVolumeThreshold(int newThreshold)
+void Sensors::setVolumeMaxThreshold(int newThreshold)
 {
     volumeMaxThreshold = newThreshold;
 }

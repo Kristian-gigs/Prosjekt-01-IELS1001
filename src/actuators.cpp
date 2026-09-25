@@ -52,6 +52,16 @@ CRGB Actuators::getLedColor()
     return ledColor;
 }
 
+void Actuators::setBlinkColor(int r, int g, int b)
+{
+    blinkColor.setRGB(r, g, b);
+}
+
+CRGB Actuators::getBlinkColor()
+{
+    return blinkColor;
+}
+
 // Funksjon for å skrive ting på displayet
 void Actuators::showInfo(String info)
 {

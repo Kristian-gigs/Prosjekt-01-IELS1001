@@ -137,10 +137,19 @@ void loop() {
   }
 
   // runs code at the interval time. This part is used to turn the light on and off with intervals when we want to blink the LED. Runs when the volume is over the threshold level.
-  if (current_time - previous_time > time_interval)
+  if (current_time - previous_time > time_interval && sensors.readMicrophone() > sensors.getVolumeMaxThreshold())
   {
+    if(led_on)
+    {
+      led_on = false;
+      actuators.setLedColor(actuators.getLedColor().r, actuators.getLedColor().g, actuators.getLedColor().b); // Sets the color of the led to black when it turns off.
+    }
+    else
+    {
+      led_on = true;
+      actuators.setLedColor(actuators.getBlinkColor().r, actuators.getBlinkColor().g, actuators.getBlinkColor().b); // Sets the color of the led to the selected blink color when it turns on.
+    }
     previous_time = current_time;
-    // led_on = false;
   }
   
   

@@ -24,6 +24,7 @@ class Actuators {
         Adafruit_SSD1306 display;
         CRGB leds[NUM_LEDS]; // Container for leds elements
         CRGB ledColor = CRGB::White; // Container for led color
+        CRGB blinkColor = CRGB::Red; // Container for blink color
         
     public:
         Actuators();
@@ -33,5 +34,7 @@ class Actuators {
         void setLedState(); // Redundant?
         void setLedColor(int r, int g, int b); // Set color of led in RGB.
         CRGB getLedColor(); // Get color of led as rgb obj
+        CRGB getBlinkColor(); // Get color of blink as rgb obj
+        void setBlinkColor(int r, int g, int b); // Set color of blink
         void showInfo(String info); // Print strings to OLED
 };
