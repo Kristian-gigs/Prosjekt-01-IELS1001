@@ -73,8 +73,3 @@ int Sensors::readMicrophone()
 {
     return analogRead(MIC_PIN);
 }
-
-int Sensors::getVolumeLedOnThreshold()
-{
-    return volumeLedOnThreshold;
-}
