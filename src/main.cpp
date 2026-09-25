@@ -7,6 +7,7 @@ void setup() {
   sensors.initSensors(); // Runs pinMode on required sensor pins
   actuators.setLEDBrightness(50);
 }
+
 void loop() {
   unsigned long current_time = millis(); // checks time at beginning of loop for delta time for non-blocking code.
 
