@@ -10,7 +10,7 @@
 class Sensors {
     private:
         // Member vars ////////////////////////
-        int volumeThreshold = 200; // Default threshold for safe volume at the working place
+        int volumeMaxThreshold = 200; // Default threshold for safe volume at the working place
         int backBtnLastPrsd = millis(); // For software debouncing of btn
         int selectBtnLastPrsd = millis(); // same as above
         ///////////////////////////////////////
@@ -23,6 +23,8 @@ class Sensors {
         int potMap(int lowestOut, int highestOut);
         bool getSelectButtonState(); // Get state of select btn. Includes debounce
         bool getBackButtonState(); // Get state of back btn. Includes debounce
+        int getVolumeMaxThreshold(); // Get threshold for volume
+        void setVolumeMaxThreshold(int newThreshold); // Set threshold for volume
         int readMicrophone(); // Get analog mic.
         /////////////////////////////////////
     private:

@@ -58,3 +58,13 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
         return false;
     }
 }
+
+int Sensors::getVolumeMaxThreshold()
+{
+    return volumeMaxThreshold;
+}
+
+void Sensors::setVolumeThreshold(int newThreshold)
+{
+    volumeMaxThreshold = newThreshold;
+}
