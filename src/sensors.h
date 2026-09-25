@@ -27,6 +27,7 @@ class Sensors {
         int getVolumeMaxThreshold(); // Get threshold for volume
         void setVolumeMaxThreshold(int newThreshold); // Set threshold for volume
         int readMicrophone(); // Get analog mic.
+        int getVolumeLedOnThreshold(); // Get sound threshold for led to be on
         /////////////////////////////////////
-    private:
+
 };
