@@ -18,6 +18,7 @@ int Sensors::getPot() // Gets analog value from potentiometer
 
 int Sensors::potMap(int lowestOut, int highestOut) // Gets desired map of analog value from pot.
 {
+    Serial.println(analogRead(POT_PIN)); // DEBUG
     return map(analogRead(POT_PIN), 0, 1023, lowestOut, highestOut);
 }
 

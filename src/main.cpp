@@ -60,67 +60,68 @@ void loop() {
     
   
   }
-  // Checks which menu option to show based on which menu/submenu we are in. The higher menus define where the pot value is mapped to,
-  // and thus which options you can choose from.
+  // Checks which menu option to show based on which menu/submenu we are in. The reason we are using ranges is rounding
+  // errors from the map function, because of the value of the pot being high, and the corresponding values to map are so few.
+  // Thus, the ranges have been manually mapped with low precision here.
   switch (menu_show_state)
   {
-    case 1:
+    case 0 ... 300:
       actuators.showInfo("Brightness Menu");
       if (sensors.getSelectButtonState())
       {
-        current_menu_state = menu_show_state;
+        current_menu_state = 1;
       }
       break;
 
-    case 2:
+    case 301 ... 600:
       actuators.showInfo("LED Color Menu");
       if (sensors.getSelectButtonState())
       {
-        current_menu_state = menu_show_state;
+        current_menu_state = 2;
       }
       break;
 
-    case 3:
+    case 601 ... 1024:
       actuators.showInfo("Threshold Menu");
       if (sensors.getSelectButtonState())
       {
-        current_menu_state = menu_show_state;
+        current_menu_state = 3;
       }
       break;
     
-    case 4:
+    case 0+1200 ... 300+1200:
         actuators.showInfo("Red: \n");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = menu_show_state;
+        current_menu_state = 4;
       }
         break;
 
-    case 5:
+    case 301+1200 ... 600+1200:
         actuators.showInfo("Green: \n");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = menu_show_state;
+        current_menu_state = 5;
       }
         break;
 
-    case 6:
+    case 601+1200 ... 1024+1200:
         actuators.showInfo("Blue: \n");
         if (sensors.getSelectButtonState())
         {
-          current_menu_state = menu_show_state;
+          current_menu_state = 6;
         }
         break;
       
-    case 7:
+    case 0+2*1200 ... 300+2*1200:
         actuators.showInfo("Blink speed");
         if (sensors.getSelectButtonState())
       {
-        current_menu_state = menu_show_state;
+        current_menu_state = 7;
       }
         break;
 
-    case 8:
+    case 301+2*1200 ... 600+2*1200:
         actuators.showInfo("Blink color");
         if (sensors.getSelectButtonState())
       {
@@ -128,14 +129,14 @@ void loop() {
       }
         break;
 
-    case 9:
+    case 601+2*1200 ... 1024+2*1200:
         actuators.showInfo("Sound max threshold");
         if (sensors.getSelectButtonState())
         {
           current_menu_state = 9;
         }
         break;
-    case 10:
+    case 5000:
         break; // When you are inside a menu with no submenus, this case will be used to make sure the menu_show_state does not change when you turn the pot, otherwise it will show 2 menus at once.
   }
 
@@ -166,8 +167,7 @@ void loop() {
 // Auxiliary functions mainly for the menu system. ///////////////////////////////////////////////////////
 void mainMenu()
 {
-  menu_show_state = sensors.potMap(1,3); // Shows brightness, LED color, and threshold menus.
- 
+  menu_show_state = sensors.getPot(); // Shows brightness, LED color, and threshold menus.
 }
 
 void brightnessMenu()
@@ -186,7 +186,7 @@ void brightnessMenu()
 
 void ledColorMenu()
 {
-  menu_show_state = sensors.potMap(4,6); // Shows the red, green, and blue options.
+  menu_show_state = sensors.getPot()+1200; // Shows the red, green, and blue options.
   if (sensors.getBackButtonState())
   {
     current_menu_state = 0;
@@ -228,7 +228,7 @@ void blueMenu()
 
 void thresholdMenu()
 {
-  menu_show_state = sensors.potMap(7,9); // Shows the blink speed, blink color, and sound threshold options.
+  menu_show_state = sensors.getPot()+2*1200; // Shows the blink speed, blink color, and sound threshold options.
   if (sensors.getBackButtonState())
   {
     current_menu_state = 0;
