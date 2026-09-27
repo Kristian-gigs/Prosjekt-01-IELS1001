@@ -12,8 +12,8 @@ unsigned long time_interval = 500;
 bool led_on = true;
 int current_menu_state = 0;
 int menu_show_state = 0;
-int last_significant_activity = millis();
-int ledHoldTime = 1000*60*10; // Time for the led to stay on after last significant sound in the room.
+unsigned long last_significant_activity = millis();
+unsigned long ledHoldTime = 1000*60*10; // Time for the led to stay on after last significant sound in the room.
 
 Actuators actuators;
 Sensors sensors;
