@@ -72,5 +72,8 @@ void Sensors::setVolumeMaxThreshold(int newThreshold)
 
 int Sensors::readMicrophone()
 {
-    return analogRead(MIC_PIN);
+    mic= analogRead(MIC_PIN);
+    amplitude=abs(mic - mic_baseline);
+    //Serial.println(amplitude); if you want to print out amplitude, what the mic reads
+    return amplitude;
 }

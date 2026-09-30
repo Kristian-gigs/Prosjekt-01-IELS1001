@@ -10,13 +10,16 @@
 class Sensors {
     private:
         // Member vars ////////////////////////
-        int volumeMaxThreshold = 120; // Default threshold for safe volume at the working place
         int backBtnLastPrsd = millis(); // For software debouncing of btn
         int selectBtnLastPrsd = millis(); // same as above
+        int volumeMaxThreshold = 120; //max set amplitude. Default threshold for safe volume at the working place.
+        int mic; //reading of mic
+        const int mic_baseline = 337; // baseline of the mic. mic runs on 3.3v. so 1.65v = center so 1.65 /5*1023 =337
+        int amplitude; // difference between mic and mic_baseline
         ///////////////////////////////////////
     public:
         // public vars ////////////////////////////////////////////////////////////////////////////////////////
-        int volumeLedOnThreshold = 40 ; // Threshold for sound in the room for the room to be considered in use, so the light will be on.
+        int volumeLedOnThreshold = 40; // Threshold for sound in the room for the room to be considered in use, so the light will be on.
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         // Member funcs //////////////////////
