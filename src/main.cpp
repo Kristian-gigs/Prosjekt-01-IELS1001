@@ -140,10 +140,14 @@ void loop() {
         break; // When you are inside a menu with no submenus, this case will be used to make sure the menu_show_state does not change when you turn the pot, otherwise it will show 2 menus at once.
   }
 
-  // runs code at the interval time. This part is used to turn the light on and off with intervals when we want to blink the LED. Runs when the volume is over the threshold level.
-
+  // Checks for volume thresholds deciding if there is significant activity at the current time
+  // in terms of volum 
   if (sensors.readMicrophone() > sensors.volumeLedOnThreshold)
-  if (current_time - previous_time > time_interval && current_time - last_significant_activity > 1000*60)
+  {
+    last_significant_activity = millis();
+  }
+  // Code for led to blink when over max vol threshold
+  if (current_time - previous_time > time_interval && sensors.readMicrophone() > sensors.getVolumeMaxThreshold())
   {
     if(led_on)
     {
