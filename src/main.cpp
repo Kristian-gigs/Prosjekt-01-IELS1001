@@ -140,23 +140,39 @@ void loop() {
         break; // When you are inside a menu with no submenus, this case will be used to make sure the menu_show_state does not change when you turn the pot, otherwise it will show 2 menus at once.
   }
 
-  // runs code at the interval time. This part is used to turn the light on and off with intervals when we want to blink the LED. Runs when the volume is over the threshold level.
-
+  // Checks for volume thresholds deciding if there is significant activity at the current time
+  // in terms of volum 
   if (sensors.readMicrophone() > sensors.volumeLedOnThreshold)
-  if (current_time - previous_time > time_interval && current_time - last_significant_activity > 1000*60)
   {
-    if(led_on)
-    {
-      led_on = false;
-      actuators.setLedColor(actuators.getLedColor().r, actuators.getLedColor().g, actuators.getLedColor().b); // Sets the color of the led to black when it turns off.
-    }
-    else
-    {
-      led_on = true;
-      actuators.setLedColor(actuators.getBlinkColor().r, actuators.getBlinkColor().g, actuators.getBlinkColor().b); // Sets the color of the led to the selected blink color when it turns on.
-    }
-    previous_time = current_time;
+    last_significant_activity = millis();  
   }
+
+  
+  if (sensors.readMicrophone() > sensors.getVolumeMaxThreshold())
+  {
+    actuators.setLedColor(actuators.getBlinkColor().r, actuators.getBlinkColor().g, actuators.getBlinkColor().b); // Sets the color of the led to the selected blink color when max threshold of volume is reached.
+    
+    // Code for led to blink when over max vol threshold
+    if (current_time - previous_time > time_interval)
+    {
+      
+      if(led_on)
+      {
+        led_on = false;
+      }
+      else
+      {
+        led_on = true;
+      }
+      previous_time = current_time;
+    }
+
+  }
+  else
+  {
+    actuators.setLedColor(1, 1, 1); // Change!!
+  }
+  
   
   
   
