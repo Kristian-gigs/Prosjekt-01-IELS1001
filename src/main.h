@@ -5,8 +5,6 @@
 #include "actuators.h"
 #include "sensors.h"
 
-#define NUM_LEDS 5
-
 unsigned long previous_time = 0;
 unsigned long time_interval = 500;
 bool led_on = true;
