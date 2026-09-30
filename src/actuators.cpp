@@ -5,7 +5,6 @@
 Actuators::Actuators()
 {
     FastLED.addLeds<WS2812, DATA_PIN, GRB>(leds, NUM_LEDS);
-    Adafruit_SSD1306 display(_screenWidth, _screenHeight, &Wire, -1);
 }
 
 //Funksjon for å skrive til ledstripe
@@ -65,6 +64,15 @@ CRGB Actuators::getBlinkColor()
 // Funksjon for å skrive ting på displayet
 void Actuators::showInfo(String info)
 {
+    if (info == lastInfo)
+    {
+        return;
+    }
+
+    lastInfo = info;
+    display.clear();
+    display.setCursor(4, 30);
+    display.set2X();
     display.println(info);
     Serial.println(info); // Debug
 }

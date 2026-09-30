@@ -4,6 +4,10 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600); // Debug
   Serial.println("Hello=)"); // Debug
+  Wire.begin();
+  Wire.setClock(400000L);
+  actuators.display.begin(&Adafruit128x64, 0x3C);
+  actuators.display.setFont(Adafruit5x7);
   sensors.initSensors(); // Runs pinMode on required sensor pins
   actuators.setLEDBrightness(50);
 }
@@ -14,6 +18,7 @@ void loop() {
   FastLED.setBrightness(actuators.getLedBrightness()); // Sets the brightness of the led at the beginning of each iteration of loop, based on the value set in the brightness menu.
   actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
   
+
   
   // Checks which menu we are currently in, and then runs the command to show said menuscreen. Checks current menu state every iteration.
   switch (current_menu_state) 
