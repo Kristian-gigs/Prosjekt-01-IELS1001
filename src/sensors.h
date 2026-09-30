@@ -10,13 +10,13 @@
 class Sensors {
     private:
         // Member vars ////////////////////////
-        int volumeMaxThreshold = 400; // Default threshold for safe volume at the working place
+        int volumeMaxThreshold = 120; // Default threshold for safe volume at the working place
         int backBtnLastPrsd = millis(); // For software debouncing of btn
         int selectBtnLastPrsd = millis(); // same as above
         ///////////////////////////////////////
     public:
         // public vars ////////////////////////////////////////////////////////////////////////////////////////
-        int volumeLedOnThreshold = 100; // Threshold for sound in the room for the room to be considered in use, so the light will be on.
+        int volumeLedOnThreshold = 40 ; // Threshold for sound in the room for the room to be considered in use, so the light will be on.
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         // Member funcs //////////////////////
