@@ -286,6 +286,8 @@ void blinkColor() // Menu for setting the led color when room is loud
 void soundMaxThreshold() // // Menu for setting the max volume before the room is too loud.
 {
   menu_show_state = 5000;
+  actuators.showInfo("Safe vol.Thr: \n" + String(sensors.potMap(100, 400)));
+  time_interval = sensors.potMap(100, 400);
   if (sensors.getBackButtonState())
   {
     current_menu_state = 3;
