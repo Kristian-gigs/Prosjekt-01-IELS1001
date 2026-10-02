@@ -10,7 +10,7 @@
 #define DATA_PIN 3 // DOUT for LED
 #define OLED_SDA A4
 #define OLED_SCL A5
-#define NUM_LEDS 5 // Number of leds in WS2812 strip.
+#define NUM_LEDS 15 // Number of leds in WS2812 strip.
 
 // Clas for containing actuators and functions relating to them.
 class Actuators {
