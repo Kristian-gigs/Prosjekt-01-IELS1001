@@ -19,7 +19,7 @@ int Sensors::getPot() // Gets analog value from potentiometer
 int Sensors::potMap(int lowestOut, int highestOut) // Gets desired map of analog value from pot.
 {
     Serial.println(analogRead(POT_PIN)); // DEBUG
-    return map(analogRead(POT_PIN), 0, 1023, lowestOut, highestOut);
+    return map(analogRead(POT_PIN), 0, 1024, lowestOut, highestOut + 1); // The highest in is +1 and highest out is +1 due to highestout only mapping to the highest in value, not equally distrib. This fixes that.
 }
 
 bool Sensors::getSelectButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
