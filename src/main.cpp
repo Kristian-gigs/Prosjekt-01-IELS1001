@@ -259,10 +259,6 @@ void thresholdMenu() // Menu for selecting which threshold submenu to show when 
   {
     current_menu_state = 0;
   }
-  if (sensors.getSelectButtonState())
-  {
-    current_menu_state = menu_show_state;
-  }
 }
 
 void blinkSpeed() // Menu for setting the blink speed when room is loud.
