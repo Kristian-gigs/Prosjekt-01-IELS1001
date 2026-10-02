@@ -291,7 +291,7 @@ void soundMaxThreshold() // // Menu for setting the max volume before the room i
 {
   menu_show_state = 5000;
   actuators.showInfo("Safe vol.Thr: \n" + String(sensors.potMap(100, 400)));
-  time_interval = sensors.potMap(100, 400);
+  sensors.setVolumeMaxThreshold(sensors.potMap(100, 400));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 3;
