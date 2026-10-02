@@ -24,15 +24,18 @@ int Sensors::potMap(int lowestOut, int highestOut) // Gets desired map of analog
 
 bool Sensors::getSelectButtonState() // Checks if button is pressed. The button will be registered pressed once due to debouncing with delta time.
 {
+    Serial.println(digitalRead(SELECT_BUTTON)); // DEBUG
     bool btnState = !digitalRead(SELECT_BUTTON);
 
-    if (btnState && (millis() - selectBtnLastPrsd> 200))
+    if (btnState && (millis() - selectBtnLastPrsd > 200))
     {
         selectBtnLastPrsd = millis();
+        Serial.println(selectBtnLastPrsd); // DEBUG
         return true;
     }
     else if (btnState && !(millis() - selectBtnLastPrsd > 200)){
         selectBtnLastPrsd = millis();
+        Serial.println(selectBtnLastPrsd); // DEBUG
         return false;
     }
     else
@@ -74,6 +77,5 @@ int Sensors::readMicrophone()
 {
     mic= analogRead(MIC_PIN);
     amplitude=abs(mic - mic_baseline);
-    //Serial.println(amplitude); if you want to print out amplitude, what the mic reads
     return amplitude;
 }

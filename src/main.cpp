@@ -149,7 +149,7 @@ void loop() {
   // in terms of volum 
   if (sensors.readMicrophone() > sensors.volumeLedOnThreshold)
   {
-    last_significant_activity = millis();  
+    last_significant_activity = millis();
   }
 
   
