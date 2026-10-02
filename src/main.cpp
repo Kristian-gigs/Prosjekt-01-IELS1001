@@ -279,7 +279,7 @@ void blinkColor() // Menu for setting the led color when room is loud
 {
   menu_show_state = 5000;
   actuators.showInfo("Blink color: \nRed(0), Green(1), Blue(2)\n" + String(sensors.potMap(0, 2)));
-  actuators.setBlinkColor(255*(sensors.potMap(0,3) == 0), 255*(sensors.potMap(0,3) == 0), 255*(sensors.potMap(0,3) == 0)); // If ex. potMap == 2, then it becomes 255*1, 255*0 and 255*0. Thus the color will be decided by the potMap value
+  actuators.setBlinkColor(255*(sensors.potMap(0, 2) == 0), 255*(sensors.potMap(0, 2) == 1), 255*(sensors.potMap(0, 2) == 2)); // If ex. potMap == 2, then it becomes 255*1, 255*0 and 255*0. Thus the color will be decided by the potMap value
 
   if (sensors.getBackButtonState())
   {
