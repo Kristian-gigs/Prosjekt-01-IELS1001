@@ -22,6 +22,7 @@ class Actuators {
         CRGB leds[NUM_LEDS]; // Container for leds elements
         CRGB ledColor = CRGB::White; // Container for led color
         CRGB blinkColor = CRGB::Red; // Container for blink color
+        CRGB userLedColor = CRGB::White; // Container for user selected led color
         
     public:
         SSD1306AsciiWire display;
@@ -33,6 +34,8 @@ class Actuators {
         void setLedColor(int r, int g, int b); // Set color of led in RGB.
         CRGB getLedColor(); // Get color of led as rgb obj
         CRGB getBlinkColor(); // Get color of blink as rgb obj
+        CRGB getUserLedColor(); // Get user selected led color
+        void setUserLedColor(int r, int g, int b); // Set user selected led color
         void setBlinkColor(int r, int g, int b); // Set color of blink
         void showInfo(String info); // Print strings to OLED
 };

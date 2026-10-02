@@ -175,7 +175,7 @@ void loop() {
   }
   else
   {
-    actuators.setLedColor(1, 1, 1); // Change!!
+    actuators.setLedColor(actuators.getUserLedColor().r, actuators.getUserLedColor().g, actuators.getUserLedColor().b);
   }
   
   
@@ -217,8 +217,8 @@ void ledColorMenu()
 void redMenu()
 {
   menu_show_state = 10;
-  actuators.setLedColor(sensors.getPot()/4, actuators.getLedColor().g, actuators.getLedColor().b);
-  actuators.showInfo("Red: \n" + String(actuators.getLedColor().r));
+  actuators.setUserLedColor(sensors.getPot()/4, actuators.getUserLedColor().g, actuators.getUserLedColor().b);
+  actuators.showInfo("Red: \n" + String(actuators.getUserLedColor().r));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 2;
@@ -228,8 +228,8 @@ void redMenu()
 void greenMenu()
 {
   menu_show_state = 10;
-  actuators.setLedColor(actuators.getLedColor().r, sensors.getPot()/4, actuators.getLedColor().b);
-  actuators.showInfo("Green: \n" + String(actuators.getLedColor().g));
+  actuators.setUserLedColor(actuators.getUserLedColor().r, sensors.getPot()/4, actuators.getUserLedColor().b);
+  actuators.showInfo("Green: \n" + String(actuators.getUserLedColor().g));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 2;
@@ -239,8 +239,8 @@ void greenMenu()
 void blueMenu()
 {
   menu_show_state = 10;
-  actuators.setLedColor(actuators.getLedColor().r, actuators.getLedColor().g, sensors.getPot()/4);
-  actuators.showInfo("Blue: \n" + String(actuators.getLedColor().b));
+  actuators.setUserLedColor(actuators.getUserLedColor().r, actuators.getUserLedColor().g, sensors.getPot()/4);
+  actuators.showInfo("Blue: \n" + String(actuators.getUserLedColor().b));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 2;

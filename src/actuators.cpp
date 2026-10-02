@@ -51,6 +51,16 @@ CRGB Actuators::getLedColor()
     return ledColor;
 }
 
+void Actuators::setUserLedColor(int r, int g, int b)
+{
+    userLedColor.setRGB(r, g, b);
+}
+
+CRGB Actuators::getUserLedColor()
+{
+    return userLedColor;
+}
+
 void Actuators::setBlinkColor(int r, int g, int b)
 {
     blinkColor.setRGB(r, g, b);
