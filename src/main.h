@@ -5,7 +5,10 @@
 #include "actuators.h"
 #include "sensors.h"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c968a51cc64281d669b930a0c0eb6508f638a50
 unsigned long previous_time = 0;
 unsigned long time_interval = 500;
 bool led_on = true;
