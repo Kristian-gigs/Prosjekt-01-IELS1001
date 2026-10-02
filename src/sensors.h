@@ -10,8 +10,8 @@
 class Sensors {
     private:
         // Member vars ////////////////////////
-        int backBtnLastPrsd = millis(); // For software debouncing of btn
-        int selectBtnLastPrsd = millis(); // same as above
+        unsigned long backBtnLastPrsd = millis(); // For software debouncing of btn
+        unsigned long selectBtnLastPrsd = millis(); // same as above
         int volumeMaxThreshold = 120; //max set amplitude. Default threshold for safe volume at the working place.
         int mic; //reading of mic
         const int mic_baseline = 337; // baseline of the mic. mic runs on 3.3v. so 1.65v = center so 1.65 /5*1023 =337
