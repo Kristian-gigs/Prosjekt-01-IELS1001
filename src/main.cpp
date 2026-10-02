@@ -190,12 +190,12 @@ void loop() {
 
 
 // Auxiliary functions mainly for the menu system. ///////////////////////////////////////////////////////
-void mainMenu()
+void mainMenu() // Menu for selecting which mainmenu submenu to show when mainmenu is selected.
 {
   menu_show_state = sensors.getPot(); // Shows brightness, LED color, and threshold menus.
 }
 
-void brightnessMenu()
+void brightnessMenu() // Menu for setting brigthness of ledstrip.
 {
   menu_show_state = 5000;
   if (sensors.getBackButtonState())
@@ -209,7 +209,7 @@ void brightnessMenu()
 
 
 
-void ledColorMenu()
+void ledColorMenu() // Menu for selecting which ledcolor submenu to show when ledcolor is selected.
 {
   menu_show_state = sensors.getPot()+1200; // Shows the red, green, and blue options.
   if (sensors.getBackButtonState())
@@ -218,7 +218,7 @@ void ledColorMenu()
   }
 
 }
-void redMenu()
+void redMenu()  // menu screen for changing green value of led strip.
 {
   menu_show_state = 5000;
   actuators.setUserLedColor(sensors.getPot()/4, actuators.getUserLedColor().g, actuators.getUserLedColor().b);
@@ -229,7 +229,7 @@ void redMenu()
   }
 }
 
-void greenMenu()
+void greenMenu() // menu screen for changing green value of led strip.
 {
   menu_show_state = 5000;
   actuators.setUserLedColor(actuators.getUserLedColor().r, sensors.getPot()/4, actuators.getUserLedColor().b);
@@ -240,7 +240,7 @@ void greenMenu()
   }
 }
 
-void blueMenu()
+void blueMenu()  // menu screen for changing blue value of led strip.
 {
   menu_show_state = 5000;
   actuators.setUserLedColor(actuators.getUserLedColor().r, actuators.getUserLedColor().g, sensors.getPot()/4);
@@ -251,7 +251,8 @@ void blueMenu()
   }
 }
 
-void thresholdMenu()
+void thresholdMenu() // Menu for selecting which threshold submenu to show when thresholdmenu was selected.
+// This menu controls the settings for when the sound is above the safe threshold, like the blinkspeed, color and how loud the room has to be to activate the blink.
 {
   menu_show_state = sensors.getPot()+2*1200; // Shows the blink speed, blink color, and sound threshold options.
   if (sensors.getBackButtonState())
@@ -264,7 +265,7 @@ void thresholdMenu()
   }
 }
 
-void blinkSpeed()
+void blinkSpeed() // Menu for setting the blink speed when room is loud.
 {
   menu_show_state = 5000;
   actuators.showInfo("Interval time: \n" + String(sensors.potMap(100, 1000)));
@@ -275,7 +276,7 @@ void blinkSpeed()
   }
 }
 
-void blinkColor()
+void blinkColor() // Menu for setting the led color when room is loud
 {
   menu_show_state = 5000;
   actuators.showInfo("Blink color: \nRed(0), Green(1), Blue(2)\n" + String(sensors.potMap(0, 2)));
@@ -287,7 +288,7 @@ void blinkColor()
   }
 }
 
-void soundMaxThreshold()
+void soundMaxThreshold() // // Menu for setting the max volume before the room is too loud.
 {
   menu_show_state = 5000;
   if (sensors.getBackButtonState())
