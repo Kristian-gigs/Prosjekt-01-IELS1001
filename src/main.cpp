@@ -156,7 +156,11 @@ void loop() {
   if (sensors.readMicrophone() > sensors.getVolumeMaxThreshold() || current_time - last_breach_max_threshold < 2000)
   {
     actuators.setLedColor(actuators.getBlinkColor().r, actuators.getBlinkColor().g, actuators.getBlinkColor().b); // Sets the color of the led to the selected blink color when max threshold of volume is reached.
-    last_breach_max_threshold = millis();
+    
+    if (sensors.readMicrophone() > sensors.getVolumeMaxThreshold())
+    {
+      last_breach_max_threshold = millis();
+    }
     // Code for led to blink when over max vol threshold
     if (current_time - previous_time > time_interval)
     {
