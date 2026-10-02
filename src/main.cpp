@@ -173,11 +173,15 @@ void loop() {
     }
 
   }
-  else
+  else if (last_significant_activity > ledHoldTime)
   {
+    led_on = true;
     actuators.setLedColor(actuators.getUserLedColor().r, actuators.getUserLedColor().g, actuators.getUserLedColor().b);
   }
-  
+  else
+  {
+    led_on = false;
+  }
   
   
   
