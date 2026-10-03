@@ -50,6 +50,11 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
 
     if (btnState && (millis() - backBtnLastPrsd > 200))
     {
+        if (backBtnHoldStartTime == NULL)
+        {
+            backBtnHoldStartTime = millis();
+        }
+
         backBtnLastPrsd = millis();
         return true;
     }
@@ -59,7 +64,20 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
     }
     else
     {
+        backBtnHoldStartTime = NULL;
         return false;
+    }
+}
+
+int Sensors::getBackBtnHoldTime()
+{
+    if (backBtnHoldStartTime != NULL)
+    {
+        return millis() - backBtnHoldStartTime;
+    }
+    else
+    {
+        return 0;
     }
 }
 

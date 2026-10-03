@@ -12,6 +12,7 @@ class Sensors {
         // Member vars ////////////////////////
         unsigned long backBtnLastPrsd = millis(); // For software debouncing of btn
         unsigned long selectBtnLastPrsd = millis(); // same as above
+        unsigned long backBtnHoldStartTime = 0;
         int volumeMaxThreshold = 120; //max set amplitude. Default threshold for safe volume at the working place.
         int mic; //reading of mic
         const int mic_baseline = 337; // baseline of the mic. mic runs on 3.3v. so 1.65v = center so 1.65 /5*1023 =337
@@ -29,6 +30,7 @@ class Sensors {
         int potMap(int lowestOut, int highestOut);
         bool getSelectButtonState(); // Get state of select btn. Includes debounce
         bool getBackButtonState(); // Get state of back btn. Includes debounce
+        int getBackBtnHoldTime();  // return time which back button has been held. For use in hold func of button.
         int getVolumeMaxThreshold(); // Get threshold for volume
         void setVolumeMaxThreshold(int newThreshold); // Set threshold for volume
         int readMicrophone(); // Get analog mic.
