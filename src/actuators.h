@@ -30,7 +30,6 @@ class Actuators {
         void writeLED(bool On); // Turn LED on or off.
         void setLEDBrightness(int bright); // Set brightness of led 0-100%
         int getLedBrightness(); // Get brightness val of led
-        void setLedState(); // Redundant?
         void setLedColor(int r, int g, int b); // Set color of led in RGB.
         CRGB getLedColor(); // Get color of led as rgb obj
         CRGB getBlinkColor(); // Get color of blink as rgb obj
