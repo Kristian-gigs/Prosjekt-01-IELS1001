@@ -48,11 +48,13 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
 {
     bool btnState = !digitalRead(BACK_BUTTON);
 
+    Serial.println("BackBtnLastPrsd: " + String(backBtnLastPrsd)); // Debug
+    delay(100);
     if (btnState && (millis() - backBtnLastPrsd > 200))
     {
-        if (backBtnHoldStartTime == NULL)
+        if (backBtnHoldStartTime == 0)
         {
-            backBtnHoldStartTime = millis();
+            Serial.println("Back button hold start time: " + String(millis())); // Debug
         }
 
         backBtnLastPrsd = millis();
@@ -64,16 +66,43 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
     }
     else
     {
-        backBtnHoldStartTime = NULL;
         return false;
     }
 }
 
+bool Sensors::checkBackBtnHeld() // Checks if back button has been held for a given time. Returns true if it has been held for the given time.
+{   
+    Serial.println("Back button hold start time: " + String(backBtnHoldStartTime)); // Debug
+    delay(400);
+    bool pressed = !digitalRead(BACK_BUTTON);
+
+    if (!pressed)
+    {
+        backBtnIsTiming = false;
+        backHoldTriggered = false;
+        backBtnHoldStartTime = 0;
+        return false;
+    }
+    if (!backBtnIsTiming)
+    {
+        backBtnIsTiming = true;
+        backBtnHoldStartTime = millis();
+        return false;
+    }
+    if (!backHoldTriggered && millis() - backBtnHoldStartTime >= 10000)
+    {
+        backHoldTriggered = true;
+        return true;
+    }
+    return false;
+}
+
 int Sensors::getBackBtnHoldTime()
 {
-    if (backBtnHoldStartTime != NULL)
+    if (backBtnHoldStartTime != 0)
     {
         return millis() - backBtnHoldStartTime;
+        backBtnHoldStartTime = 0; // Reset hold time after returning value
     }
     else
     {

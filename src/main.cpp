@@ -17,12 +17,18 @@ void loop() {
 
   FastLED.setBrightness(actuators.getLedBrightness()); // Sets the brightness of the led at the beginning of each iteration of loop, based on the value set in the brightness menu.
 
+  Serial.println("led_override_off: " + String(led_override_off)); // Debug
+  delay(200);
   if (!led_override_off)
   {
+    Serial.println("Led on: " + String(led_on)); // Debug
+    delay(400);
     actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
   }
   else
   {
+    Serial.println("Led override off: " + String(led_override_off)); // Debug
+    delay(100);
     actuators.writeLED(false); // Turns the light off permanently if the back button was held for a given time.
   }
   
@@ -187,9 +193,14 @@ void loop() {
     led_on = false;
   }
   
-  if(sensors.getBackBtnHoldTime() > 10000)
+
+  if(sensors.checkBackBtnHeld()) // If back button has been held for a given time, then toggle the led_override_off variable, which will turn the led off permanently until the back button is held again.
   {
     led_override_off = !led_override_off;
+  }
+  else
+  {
+    Serial.println("getBackBtnHoldTime less than 10 000: " + String(sensors.getBackBtnHoldTime())); // Debug
   }
   
   

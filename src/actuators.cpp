@@ -74,6 +74,7 @@ CRGB Actuators::getBlinkColor()
 // Funksjon for å skrive ting på displayet
 void Actuators::showInfo(String info)
 {
+    Serial.println(info); // Debug
     if (info == lastInfo)
     {
         return;
@@ -84,5 +85,4 @@ void Actuators::showInfo(String info)
     display.setCursor(4, 30);
     display.set2X();
     display.println(info);
-    Serial.println(info); // Debug
 }
