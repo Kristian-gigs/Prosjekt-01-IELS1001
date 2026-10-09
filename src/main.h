@@ -8,7 +8,6 @@
 uint32_t previous_time = 0;
 uint32_t time_interval = 500; // Time interval for blink length.
 bool led_on = true;
-bool led_override_off = false;
 int current_menu_state = 0;
 int menu_show_state = 0;
 uint32_t last_significant_activity = millis();

@@ -16,15 +16,7 @@ void loop() {
   unsigned long current_time = millis(); // checks time at beginning of loop for delta time for non-blocking code.
 
   FastLED.setBrightness(actuators.getLedBrightness()); // Sets the brightness of the led at the beginning of each iteration of loop, based on the value set in the brightness menu.
-
-  if (!led_override_off)
-  {
-    actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
-  }
-  else
-  {
-    actuators.writeLED(false); // Turns the light off permanently if the back button was held for a given time.
-  }
+  actuators.writeLED(led_on); // Writes current value to the led at the beginning of each iteration of loop, the selected color or black based on the state of led_on
   
 
   
@@ -172,7 +164,14 @@ void loop() {
     // Code for led to blink when over max vol threshold
     if (current_time - previous_time > time_interval)
     {
-      led_on = !led_on;
+      if(led_on)
+      {
+        led_on = false;
+      }
+      else
+      {
+        led_on = true;
+      }
       previous_time = current_time;
     }
 
@@ -187,15 +186,6 @@ void loop() {
     led_on = false;
   }
   
-
-  if(sensors.checkBackBtnHeld()) // If back button has been held for a given time, then toggle the led_override_off variable, which will turn the led off permanently until the back button is held again.
-  {
-    led_override_off = !led_override_off;
-  }
-  else
-  {
-    Serial.println("getBackBtnHoldTime less than 10 000: " + String(sensors.getBackBtnHoldTime())); // Debug
-  }
   
   
 }
@@ -300,8 +290,8 @@ void blinkColor() // Menu for setting the led color when room is loud
 void soundMaxThreshold() // // Menu for setting the max volume before the room is too loud.
 {
   menu_show_state = 5000;
-  actuators.showInfo("Safe vol.Thr: \n" + String(sensors.potMap(100, 200)));
-  sensors.setVolumeMaxThreshold(sensors.potMap(100, 200));
+  actuators.showInfo("Safe vol.Thr: \n" + String(sensors.potMap(100, 400)));
+  sensors.setVolumeMaxThreshold(sensors.potMap(100, 400));
   if (sensors.getBackButtonState())
   {
     current_menu_state = 3;
