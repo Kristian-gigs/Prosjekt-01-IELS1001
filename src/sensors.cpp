@@ -80,7 +80,7 @@ bool Sensors::checkBackBtnHeld() // Checks if back button has been held for a gi
         backBtnHoldStartTime = millis();
         return false;
     }
-    if (!backHoldTriggered && millis() - backBtnHoldStartTime >= 10000)
+    if (!backHoldTriggered && millis() - backBtnHoldStartTime >= 5000)
     {
         backHoldTriggered = true;
         return true;
