@@ -48,15 +48,8 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
 {
     bool btnState = !digitalRead(BACK_BUTTON);
 
-    Serial.println("BackBtnLastPrsd: " + String(backBtnLastPrsd)); // Debug
-    delay(100);
     if (btnState && (millis() - backBtnLastPrsd > 200))
     {
-        if (backBtnHoldStartTime == 0)
-        {
-            Serial.println("Back button hold start time: " + String(millis())); // Debug
-        }
-
         backBtnLastPrsd = millis();
         return true;
     }
@@ -72,8 +65,6 @@ bool Sensors::getBackButtonState() // Checks if button is pressed. The button wi
 
 bool Sensors::checkBackBtnHeld() // Checks if back button has been held for a given time. Returns true if it has been held for the given time.
 {   
-    Serial.println("Back button hold start time: " + String(backBtnHoldStartTime)); // Debug
-    delay(400);
     bool pressed = !digitalRead(BACK_BUTTON);
 
     if (!pressed)
