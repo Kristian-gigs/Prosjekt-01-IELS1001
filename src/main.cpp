@@ -176,7 +176,7 @@ void loop() {
     }
 
   }
-  else if (current_time - last_significant_activity > ledHoldTime && current_time - last_breach_max_threshold > 2000)
+  else if (current_time - last_significant_activity < ledHoldTime && current_time - last_breach_max_threshold > 2000)
   {
     led_on = true;
     actuators.setLedColor(actuators.getUserLedColor().r, actuators.getUserLedColor().g, actuators.getUserLedColor().b);
